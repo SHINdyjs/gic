@@ -84,10 +84,9 @@ def extract_imax_odyssey(data):
     if not data:
         return []
     items = []
-    # 응답 구조에 따라 파싱 (유연하게 처리)
     raw = json.dumps(data, ensure_ascii=False)
     if MOVIE_KEYWORD in raw and ("IMAX" in raw.upper() or SCREEN_NO in raw):
-        items.append(raw[:800])  # 너무 길면 자름
+        items.append(raw[:800])
     return items
 
 
@@ -110,7 +109,6 @@ def main():
     prev_hash = state.get("hash")
 
     if prev_hash is None:
-        # 첫 실행
         send_discord(
             f"**CGV 광교 IMAX 알리미 시작**\n"
             f"감시 극장: 광교 (siteNo={SITE_NO})\n"
